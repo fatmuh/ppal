@@ -17,6 +17,9 @@
   "_popper-0aa08b12.js": {
     "file": "assets/popper-0aa08b12.js"
   },
+  "_tabulator_esm-e42c3e0e.js": {
+    "file": "assets/tabulator_esm-e42c3e0e.js"
+  },
   "_tailwind-merge-354b9f27.js": {
     "file": "assets/tailwind-merge-354b9f27.js"
   },
@@ -489,6 +492,14 @@
     "isEntry": true,
     "src": "resources/js/pages/chat/index.js"
   },
+  "resources/js/pages/kta/index.js": {
+    "file": "assets/index-d4cd121c.js",
+    "imports": [
+      "_tabulator_esm-e42c3e0e.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/pages/kta/index.js"
+  },
   "resources/js/pages/login/index.js": {
     "file": "assets/index-740a467b.js",
     "isEntry": true,
@@ -770,7 +781,10 @@
     "src": "resources/js/vendor/tab/index.js"
   },
   "resources/js/vendor/tabulator/index.js": {
-    "file": "assets/index-6769c35a.js",
+    "file": "assets/index-11e8a661.js",
+    "imports": [
+      "_tabulator_esm-e42c3e0e.js"
+    ],
     "isEntry": true,
     "src": "resources/js/vendor/tabulator/index.js"
   },
