@@ -80,7 +80,6 @@
 @once
     @push('vendors')
         <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
-        @vite('resources/js/vendor/tabulator/index.js')
         @vite('resources/js/vendor/lucide/index.js')
         {{-- @vite('resources/js/vendor/xlsx/index.js') --}}
     @endpush
