@@ -17,7 +17,7 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
             sortMode: "remote",
             pagination: true,
             paginationSize: 10,
-            paginationSizeSelector: [10, 20, 50, 100],
+            paginationSizeSelector: [10, 20, 50, 100, 250],
             paginationCounter: "rows",
             layout: "fitColumns",
             responsiveLayout: "collapse",
@@ -38,7 +38,7 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
                 },
                 {
                     title: "No. KTA",
-                    minWidth: 100,
+                    width: 220,
                     responsive: 0,
                     field: "no_kta",
                     vertAlign: "middle",
@@ -82,7 +82,7 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
                 },
                 {
                     title: "Lihat Kartu",
-                    minWidth: 150,
+                    width: 200,
                     responsive: 0,
                     field: "show_card",
                     headerHozAlign: "center",
@@ -116,7 +116,7 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
                     formatter(cell, formatterParams) {
                             return `<div class="flex items-center lg:justify-center">
 
-                            <a href="javascript:;" class="flex items-center mr-3 text-warning btn-kta-edit" data-url="${cell.getData().urls.detail_url}" data-form-url="${cell.getData().urls.update_url}">
+                            <a href="javascript:;" class="flex items-center mr-3 text-yellow-600 btn-kta-edit" data-url="${cell.getData().urls.detail_url}" data-form-url="${cell.getData().urls.update_url}">
                                 <i data-lucide="pencil" class="w-4 h-4 mr-1"></i> Edit
                             </a>
 
@@ -149,8 +149,12 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
         // Filter function
         function filterHTMLForm() {
             let value = $("#tabulator-html-filter-value").val();
+            let name = $("#tabulator-html-filter-name").val();
+            let nik = $("#tabulator-html-filter-nik").val();
             tabulator.setFilter([
                 {field:'value', type:'like', value:value},
+                {field:'name', type:'like', value:name},
+                {field:'nik', type:'like', value:nik},
             ]);
         }
 
@@ -159,9 +163,21 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
             filterHTMLForm();
         }, 700));
 
+        $("#tabulator-html-filter-name").on('keyup', helper.delayWithClear(function(e){
+            e.preventDefault();
+            filterHTMLForm();
+        }, 700));
+
+        $("#tabulator-html-filter-nik").on('keyup', helper.delayWithClear(function(e){
+            e.preventDefault();
+            filterHTMLForm();
+        }, 700));
+
         $("#tabulator-html-filter-reset").on("click", function (e) {
             e.preventDefault();
             $("#tabulator-html-filter-value").val("");
+            $("#tabulator-html-filter-name").val("");
+            $("#tabulator-html-filter-nik").val("");
             filterHTMLForm();
         });
 

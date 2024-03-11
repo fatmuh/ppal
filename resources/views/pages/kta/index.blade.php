@@ -31,12 +31,24 @@
                 class="sm:mr-auto xl:flex"
                 id="tabulator-html-filter-form"
             >
-                <div class="items-center mt-2 sm:mr-4 sm:flex xl:mt-0">
+                <div class="items-center gap-2 mt-2 sm:mr-4 sm:flex xl:mt-0">
                     <x-base.form-input
                         class="mt-2 sm:mt-0 sm:w-40 2xl:w-full"
                         id="tabulator-html-filter-value"
                         type="text"
-                        placeholder="Search..."
+                        placeholder="Cari Nomor KTA"
+                    />
+                    <x-base.form-input
+                        class="mt-2 sm:mt-0 sm:w-40 2xl:w-full"
+                        id="tabulator-html-filter-name"
+                        type="text"
+                        placeholder="Cari Nama"
+                    />
+                    <x-base.form-input
+                        class="mt-2 sm:mt-0 sm:w-40 2xl:w-full"
+                        id="tabulator-html-filter-nik"
+                        type="text"
+                        placeholder="Cari NIK"
                     />
                 </div>
                 <div class="mt-2 xl:mt-0">

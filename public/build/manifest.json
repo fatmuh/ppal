@@ -42,7 +42,7 @@
     "src": "node_modules/leaflet/dist/images/marker-icon.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-a91c5a32.css",
+    "file": "assets/app-984f172b.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -493,7 +493,7 @@
     "src": "resources/js/pages/chat/index.js"
   },
   "resources/js/pages/kta/index.js": {
-    "file": "assets/index-d4cd121c.js",
+    "file": "assets/index-20506f7f.js",
     "imports": [
       "_tabulator_esm-e42c3e0e.js"
     ],
