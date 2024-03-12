@@ -63,13 +63,12 @@
                             data-placeholder="Pilih Agama"
                         >
                             <option></option>
-                            <option value="ISLAM">ISLAM</option>
-                            <option value="KRISTEN">KRISTEN</option>
-                            <option value="KATHOLIK">KATHOLIK</option>
-                            <option value="BUDHA">BUDHA</option>
-                            <option value="HINDU">HINDU</option>
-                            <option value="KONGHUCU">KONGHUCU</option>
-                            <option value="OTHER">OTHER</option>
+                            <option value="Islam">Islam</option>
+                            <option value="Kristen">Kristen</option>
+                            <option value="Khatolik">Khatolik</option>
+                            <option value="Budha">Budha</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Konghucu">Konghucu</option>
                         </x-base.tom-select>
                     </div>
                 </div>
@@ -190,7 +189,7 @@
                             id="istri_suami"
                             name="istri_suami"
                             class="tom-select w-full"
-                            data-placeholder="Pilih Golongan Darah"
+                            data-placeholder="Pilih Istri / Suami"
                         >
                             <option></option>
                             <option value="Istri">Istri</option>
