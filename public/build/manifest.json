@@ -493,7 +493,7 @@
     "src": "resources/js/pages/chat/index.js"
   },
   "resources/js/pages/kta/index.js": {
-    "file": "assets/index-20506f7f.js",
+    "file": "assets/index-3b1cbd4b.js",
     "imports": [
       "_tabulator_esm-e42c3e0e.js"
     ],

@@ -9,7 +9,7 @@
             @csrf
             @method('POST')
             <x-base.dialog.description class="grid grid-cols-12 gap-4 gap-y-3">
-                
+
                 <div class="col-span-12 md:col-span-6" id="kta-column">
                     <x-base.form-label>No. KTA</x-base.form-label>
                     <code class="ml-1 text-danger">*</code>
@@ -56,20 +56,13 @@
                     <x-base.form-label>Agama</x-base.form-label>
                     <code class="ml-1 text-danger">*</code>
                     <div>
-                        <x-base.tom-select
+                        <x-base.form-input
                             id="agama"
+                            type="text"
+                            placeholder="Masukkan Agama"
                             name="agama"
-                            class="tom-select w-full"
-                            data-placeholder="Pilih Agama"
-                        >
-                            <option></option>
-                            <option value="Islam">Islam</option>
-                            <option value="Kristen">Kristen</option>
-                            <option value="Khatolik">Khatolik</option>
-                            <option value="Budha">Budha</option>
-                            <option value="Hindu">Hindu</option>
-                            <option value="Konghucu">Konghucu</option>
-                        </x-base.tom-select>
+                            value="{{ old('agama') }}"
+                        />
                     </div>
                 </div>
 

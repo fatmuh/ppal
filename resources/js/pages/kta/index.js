@@ -2,7 +2,7 @@ import "./tabulator";
 
 (function () {
     "use strict";
-    
+
     $(document).on('click', '.btn-kta-edit', function (e) {
         e.preventDefault();
 
@@ -16,7 +16,7 @@ import "./tabulator";
             $("input#no_kta").val(data.no_kta);
             $("input#full_name").val(data.full_name);
             $("input#ttl").val(data.ttl);
-            $('#agama')[0].tomselect.setValue(data.agama);
+            $("input#agama").val(data.agama);
             $('#gol_darah')[0].tomselect.setValue(data.gol_darah);
             $("input#pangkat_terakhir").val(data.pangkat_terakhir);
             $("input#nik").val(data.nik);
@@ -34,7 +34,7 @@ import "./tabulator";
             $("input#wil_rayon").val(data.wil_rayon);
             $("input#alamat1").val(data.alamat1);
             $("input#alamat2").val(data.alamat2);
-            
+
         }).catch((err) => {
             console.error(err);
             alert(err);

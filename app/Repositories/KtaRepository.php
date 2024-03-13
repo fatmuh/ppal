@@ -45,7 +45,7 @@ class KtaRepository
         string $nama_istri_suami,
         string $nik_istri_suami,
         string $alamat1,
-        string $alamat2,
+        ?string $alamat2,
         string $wil_rayon,
     ): Kta
     {
