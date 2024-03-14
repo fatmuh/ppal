@@ -77,6 +77,7 @@
                             data-placeholder="Pilih Golongan Darah"
                         >
                             <option></option>
+                            <option value="-">Tidak Ada</option>
                             <option value="A">A</option>
                             <option value="A+">A+</option>
                             <option value="B">B</option>

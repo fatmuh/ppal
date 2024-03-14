@@ -32,7 +32,7 @@ class KtaRepository
     }
 
     public function saveKta(
-        string $no_kta,
+        ?string $no_kta,
         string $full_name,
         string $ttl,
         string $agama,

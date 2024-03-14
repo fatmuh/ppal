@@ -22,7 +22,7 @@ class KtaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'no_kta'                => ['required'],
+            'no_kta'                => ['nullable'],
             'full_name'             => ['required'],
             'ttl'                   => ['required'],
             'agama'                 => ['required'],
@@ -39,6 +39,29 @@ class KtaRequest extends FormRequest
             'alamat1'               => ['required'],
             'alamat2'               => ['nullable'],
             'wil_rayon'             => ['required'],
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'no_kta'                => 'Nomor KTA',
+            'full_name'             => 'Nama lengkap',
+            'ttl'                   => 'Tempat, tanggal lahir',
+            'agama'                 => 'Agama',
+            'gol_darah'             => 'Golongan darah',
+            'pangkat_terakhir'      => 'Pangkat terakhir',
+            'nik'                   => 'Nomor Induk Kependudukan (NIK)',
+            'tanda_jasa_tertinggi'  => 'Tanda jasa tertinggi',
+            'tanggal_cetak'         => 'Tanggal cetak',
+            'foto'                  => 'Foto',
+            'ttd'                   => 'Tanda tangan',
+            'istri_suami'           => 'Istri/suami',
+            'nama_istri_suami'      => 'Nama istri/suami',
+            'nik_istri_suami'       => 'NIK istri/suami',
+            'alamat1'               => 'Alamat 1',
+            'alamat2'               => 'Alamat 2',
+            'wil_rayon'             => 'Wilayah/rayon',
         ];
     }
 }
