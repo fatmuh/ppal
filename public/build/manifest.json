@@ -42,7 +42,7 @@
     "src": "node_modules/leaflet/dist/images/marker-icon.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-c274fe07.css",
+    "file": "assets/app-edd5962c.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -271,7 +271,7 @@
     "src": "resources/images/woman-illustration.svg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-72b8133d.js",
+    "file": "assets/app-c862610c.js",
     "imports": [
       "__commonjsHelpers-725317a4.js",
       "_tailwind-merge-354b9f27.js",
@@ -493,7 +493,7 @@
     "src": "resources/js/pages/chat/index.js"
   },
   "resources/js/pages/kta/index.js": {
-    "file": "assets/index-3b1cbd4b.js",
+    "file": "assets/index-7e866b14.js",
     "imports": [
       "_tabulator_esm-e42c3e0e.js"
     ],
@@ -575,6 +575,14 @@
     "file": "assets/index-16b554c0.js",
     "isEntry": true,
     "src": "resources/js/pages/tabulator/index.js"
+  },
+  "resources/js/pages/users/index.js": {
+    "file": "assets/index-62c40d24.js",
+    "imports": [
+      "_tabulator_esm-e42c3e0e.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/pages/users/index.js"
   },
   "resources/js/pages/validation/index.js": {
     "file": "assets/index-bb927a73.js",
