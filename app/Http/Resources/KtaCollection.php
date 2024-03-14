@@ -36,12 +36,11 @@ class KtaCollection extends JsonResource
             'card'          => [
                 'front' => route('kta.front', $this->id),
                 'back' => route('kta.back', $this->id),
-                // 'delete_url' => route('buyer.delete', $this->id),
             ],
             'urls'          => [
                 'detail_url' => route('kta.detail', $this->id),
                 'update_url' => route('kta.update', $this->id),
-                // 'delete_url' => route('buyer.delete', $this->id),
+                'delete_url' => route('kta.delete', $this->id),
             ]
         ];
     }

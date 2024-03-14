@@ -28,6 +28,15 @@ class SideMenu
                 'title' => 'KTA',
 
             ],
+            'users' => [
+                'icon' => 'users',
+                'route_name' => 'user.list',
+                'params' => [
+                //     'layout' => 'side-menu'
+                ],
+                'title' => 'Admin',
+
+            ],
         ];
     }
 }

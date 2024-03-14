@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KtaController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,14 +31,24 @@ Route::controller(AuthController::class)->middleware('guest')->name('auth.')->gr
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-    Route::controller(KtaController::class)->prefix('kta')->name('kta.')->group(function () {
-        Route::get('/admin', 'list')->name('list');
-        Route::get('/admin/tabulator', 'tabulator')->name('tabulator');
-        Route::post('/admin/store', 'store')->name('store');
-        Route::patch('/admin/update/{id}', 'update')->name('update');
-        Route::get('/admin/detail/{id}', 'detail')->name('detail');
-        Route::get('/admin/detail/card/front/{id}', 'front')->name('front');
-        Route::get('/admin/detail/card/back/{id}', 'back')->name('back');
+    Route::controller(KtaController::class)->prefix('admin/kta')->name('kta.')->group(function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/tabulator', 'tabulator')->name('tabulator');
+        Route::post('/store', 'store')->name('store');
+        Route::patch('/update/{id}', 'update')->name('update');
+        Route::delete('/delete/{id}', 'delete')->name('delete');
+        Route::get('/detail/{id}', 'detail')->name('detail');
+        Route::get('/detail/card/front/{id}', 'front')->name('front');
+        Route::get('/detail/card/back/{id}', 'back')->name('back');
+    });
+
+    Route::controller(UserController::class)->prefix('admin/users')->name('user.')->group(function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/tabulator', 'tabulator')->name('tabulator');
+        Route::post('/store', 'store')->name('store');
+        Route::patch('/update/{id}', 'update')->name('update');
+        Route::delete('/delete/{id}', 'delete')->name('delete');
+        Route::get('/detail/{id}', 'detail')->name('detail');
     });
 
     Route::controller(PageController::class)->group(function () {

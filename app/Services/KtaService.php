@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\KtaRequest;
 use App\Repositories\KtaRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -161,7 +162,33 @@ class KtaService
 
         return (object) [
             'code'    => Response::HTTP_OK,
-            'message' => 'Berhasil menambahkan data KTA!'
+            'message' => 'Berhasil mengubah data KTA!'
+        ];
+    }
+
+    public function deleteKta(int $id): object
+    {
+        try {
+            $kta = $this->ktaRepository->getKtaById(id: $id);
+            if (!$kta) {
+                throw new ModelNotFoundException();
+            }
+
+            if($kta->foto != null && $kta->ttd != null) {
+                Storage::disk(env('DISK_PUBLIC'))->delete($kta->foto);
+                Storage::disk(env('DISK_PUBLIC'))->delete($kta->ttd);
+            }
+            
+            $this->ktaRepository->deleteKta(
+                id: $id,
+            );
+        } catch (\Throwable $e) {
+            throw $e;
+        }
+
+        return (object) [
+            'code'    => Response::HTTP_OK,
+            'message' => 'Berhasil menghapus data KTA!'
         ];
     }
 }

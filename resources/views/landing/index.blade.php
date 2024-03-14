@@ -18,7 +18,7 @@
     </div>
     <div class="bg-gray-100 min-h-screen flex items-center justify-center py-4">
 
-        <div class="max-w-xl w-full bg-white p-8 rounded-lg shadow-md" id="formContainer">
+        <div class="max-w-4xl w-full bg-white p-8 rounded-lg shadow-md" id="formContainer">
             <form method="POST" enctype="multipart/form-data">
                 @csrf
                 <div id="formTop">

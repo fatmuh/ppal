@@ -31,6 +31,11 @@ class KtaRepository
         return Kta::whereId($id)->firstOrFail();
     }
 
+    public function getTotalKta(): int
+    {
+        return Kta::count();
+    }
+
     public function saveKta(
         ?string $no_kta,
         string $full_name,

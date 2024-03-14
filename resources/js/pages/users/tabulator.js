@@ -3,13 +3,13 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
 (function() {
     "use strict"
 
-    const tableEl = $("#kta-tabulator");
+    const tableEl = $("#users-tabulator");
 
     if (tableEl.length && tableEl.data('url')) {
         const url = tableEl.data('url');
         const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-        const tabulator = new Tabulator("#kta-tabulator", {
+        const tabulator = new Tabulator("#users-tabulator", {
             ajaxURL: url,
             ajaxContentType: "json",
             paginationMode: "remote",
@@ -37,21 +37,10 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
                     formatter:"rownum"
                 },
                 {
-                    title: "No. KTA",
-                    width: 220,
-                    responsive: 0,
-                    field: "no_kta",
-                    vertAlign: "middle",
-                    headerHozAlign: "center",
-                    hozAlign: "center",
-                    print: false,
-                    download: false,
-                },
-                {
                     title: "Nama",
-                    width: 280,
+                    minWidth: 300,
                     responsive: 0,
-                    field: "full_name",
+                    field: "name",
                     vertAlign: "middle",
                     headerHozAlign: "center",
                     hozAlign: "center",
@@ -59,49 +48,15 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
                     download: false,
                 },
                 {
-                    title: "Pangkat Terakhir",
-                    minWidth: 150,
+                    title: "Email",
+                    minWidth: 300,
                     responsive: 0,
-                    field: "pangkat_terakhir",
+                    field: "email",
                     vertAlign: "middle",
                     headerHozAlign: "center",
                     hozAlign: "center",
                     print: false,
                     download: false,
-                },
-                {
-                    title: "NIK",
-                    minWidth: 150,
-                    responsive: 0,
-                    field: "nik",
-                    vertAlign: "middle",
-                    headerHozAlign: "center",
-                    hozAlign: "center",
-                    print: false,
-                    download: false,
-                },
-                {
-                    title: "Lihat Kartu",
-                    width: 200,
-                    responsive: 0,
-                    field: "show_card",
-                    headerHozAlign: "center",
-                    vertAlign: "middle",
-                    print: false,
-                    download: false,
-                    formatter(cell, formatterParams) {
-                        return `<div class="flex items-center lg:justify-center">
-
-                                    <a href="${cell.getData().card.front}" target="_blank" class="rounded-md border border-primary px-3 py-1 text-primary mr-2">
-                                    Depan
-                                    </a><br>
-
-                                    <a href="${cell.getData().card.back}" target="_blank" class="rounded-md border border-primary px-3 py-1 text-primary">
-                                    Belakang
-                                    </a>
-
-                                </div>`;
-                    },
                 },
                 {
                     title: "ACTIONS",
@@ -116,15 +71,15 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
                     formatter(cell, formatterParams) {
                             return `<div class="flex items-center lg:justify-center">
 
-                            <a href="javascript:;" class="flex items-center mr-3 text-yellow-600 btn-kta-edit" data-url="${cell.getData().urls.detail_url}" data-form-url="${cell.getData().urls.update_url}">
+                            <a href="javascript:;" class="flex items-center mr-3 text-yellow-600 btn-users-edit" data-url="${cell.getData().urls.detail_url}" data-form-url="${cell.getData().urls.update_url}">
                                 <i data-lucide="pencil" class="w-4 h-4 mr-1"></i> Edit
                             </a>
 
-                            <a href="javascript:void(0);" class="flex items-center text-danger mr-3" onclick="alertConfirm('delete-kta-form-${cell.getData().id}')">
+                            <a href="javascript:void(0);" class="flex items-center text-danger mr-3" onclick="alertConfirm('delete-users-form-${cell.getData().id}')">
                                 <i data-lucide="trash" class="w-4 h-4 mr-1"></i> Delete
                             </a>
 
-                            <form id="delete-kta-form-${cell.getData().id}" action="${cell.getData().urls.delete_url}" method="POST">
+                            <form id="delete-users-form-${cell.getData().id}" action="${cell.getData().urls.delete_url}" method="POST">
                                 <input type="hidden" name="_token" value="${CSRF_TOKEN}">
                                 <input type="hidden" name="_method" value="DELETE">
                             </form>
@@ -158,12 +113,10 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
         // Filter function
         function filterHTMLForm() {
             let value = $("#tabulator-html-filter-value").val();
-            let name = $("#tabulator-html-filter-name").val();
-            let nik = $("#tabulator-html-filter-nik").val();
+            let email = $("#tabulator-html-filter-email").val();
             tabulator.setFilter([
                 {field:'value', type:'like', value:value},
-                {field:'name', type:'like', value:name},
-                {field:'nik', type:'like', value:nik},
+                {field:'email', type:'like', value:email},
             ]);
         }
 
@@ -172,12 +125,7 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
             filterHTMLForm();
         }, 700));
 
-        $("#tabulator-html-filter-name").on('keyup', helper.delayWithClear(function(e){
-            e.preventDefault();
-            filterHTMLForm();
-        }, 700));
-
-        $("#tabulator-html-filter-nik").on('keyup', helper.delayWithClear(function(e){
+        $("#tabulator-html-filter-email").on('keyup', helper.delayWithClear(function(e){
             e.preventDefault();
             filterHTMLForm();
         }, 700));
@@ -185,8 +133,7 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
         $("#tabulator-html-filter-reset").on("click", function (e) {
             e.preventDefault();
             $("#tabulator-html-filter-value").val("");
-            $("#tabulator-html-filter-name").val("");
-            $("#tabulator-html-filter-nik").val("");
+            $("#tabulator-html-filter-email").val("");
             filterHTMLForm();
         });
 

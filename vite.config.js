@@ -64,6 +64,7 @@ export default defineConfig({
                 "resources/js/pages/tabulator/index.js",
                 "resources/js/pages/validation/index.js",
                 "resources/js/pages/kta/index.js",
+                "resources/js/pages/users/index.js",
 
                 // Layouts
                 "resources/js/layouts/side-menu/index.js",

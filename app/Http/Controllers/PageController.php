@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PageService;
 use Illuminate\View\View;
 
 class PageController extends Controller
 {
+    public function __construct(
+        protected PageService $pageService,
+    ) {}
     /**
      * Show specified view.
      *
      */
     public function dashboard(): View
     {
-        return view('pages.dashboard.index', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
-        ]);
+        $data = $this->pageService->getData();
+        return view('pages.dashboard.index', $data);
     }
 }

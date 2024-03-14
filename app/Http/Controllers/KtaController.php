@@ -80,4 +80,15 @@ class KtaController extends Controller
 
         return redirect()->route('kta.list')->with('error-message', $result->message);
     }
+
+    public function delete($id): RedirectResponse
+    {
+        $result = $this->ktaService->deleteKta(id: $id);
+
+        if ($result->code == Response::HTTP_OK) {
+            return redirect()->route('kta.list')->with('success-message', $result->message);
+        }
+
+        return redirect()->route('kta.list')->with('error-message', $result->message);
+    }
 }
