@@ -62,3 +62,5 @@ Route::controller(ImportExportController::class)->group(function () {
     Route::get('/admin/kta/export', 'export')->name('kta.export');
     Route::get('/admin/kta/export/csv', 'exportImport')->name('kta.export.csv');
 });
+
+Route::get('/get-image', 'ImageController@getImage');
