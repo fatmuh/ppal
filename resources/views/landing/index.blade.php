@@ -86,17 +86,11 @@
                     </div>
 
                     <div class="mb-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 gap-y-3">
+                        <div class="grid grid-cols-1 gap-4 gap-y-3">
                             <div>
                                 <label for="postContent" class="block text-gray-700 text-sm font-bold mb-2">Tanda Jasa Tertinggi</label>
                                 <div>
                                     <input type="text" id="tanda_jasa_tertinggi" name="tanda_jasa_tertinggi" class="w-full border-2 rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5 resize-none focus:outline-none focus:border-blue-500" placeholder="Masukkan Tanda Jasa Tertinggi"></input>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="postContent" class="block text-gray-700 text-sm font-bold mb-2">Tanggal Cetak</label>
-                                <div>
-                                    <input type="text" id="tanggal_cetak" name="tanggal_cetak" rows="4" class="w-full border-2 rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5 resize-none focus:outline-none focus:border-blue-500" placeholder="Masukkan Tanggal Cetak" value="{{ date('d M Y'); }}"></input>
                                 </div>
                             </div>
                         </div>

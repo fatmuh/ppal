@@ -45,7 +45,7 @@ class KtaRepository
         string $pangkat_terakhir,
         string $nik,
         string $tanda_jasa_tertinggi,
-        string $tanggal_cetak,
+        ?string $tanggal_cetak,
         string $istri_suami,
         string $nama_istri_suami,
         string $nik_istri_suami,
@@ -85,7 +85,7 @@ class KtaRepository
 
     public function updateKta(
         int $id,
-        string $no_kta,
+        ?string $no_kta,
         string $full_name,
         string $ttl,
         string $agama,
@@ -98,7 +98,7 @@ class KtaRepository
         string $nama_istri_suami,
         string $nik_istri_suami,
         string $alamat1,
-        string $alamat2,
+        ?string $alamat2,
         string $wil_rayon,
     ): Kta
     {

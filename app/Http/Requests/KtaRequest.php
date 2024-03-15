@@ -30,7 +30,6 @@ class KtaRequest extends FormRequest
             'pangkat_terakhir'      => ['required'],
             'nik'                   => ['required'],
             'tanda_jasa_tertinggi'  => ['required'],
-            'tanggal_cetak'         => ['nullable'],
             'foto'                  => ['nullable', 'file', 'image', 'mimes:png,jpg,jpeg', 'max:4096'],
             'ttd'                   => ['nullable', 'file', 'image', 'mimes:png,jpg,jpeg', 'max:4096'],
             'istri_suami'           => ['required'],

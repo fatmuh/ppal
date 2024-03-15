@@ -12,7 +12,7 @@
 
                 <div class="col-span-12 md:col-span-6" id="kta-column">
                     <x-base.form-label>No. KTA</x-base.form-label>
-                    <code class="ml-1 text-danger">*</code>
+                    <code class="ml-1 text-danger">(Optional)</code>
                     <div>
                         <x-base.form-input
                             id="no_kta"
@@ -75,6 +75,7 @@
                             name="gol_darah"
                             class="tom-select w-full"
                             data-placeholder="Pilih Golongan Darah"
+                            data-header="Pilih Golongan Darah"
                         >
                             <option></option>
                             <option value="-">Tidak Ada</option>
@@ -131,23 +132,9 @@
                     </div>
                 </div>
 
-                <div class="col-span-12" id="tanggal-cetak-column">
-                    <x-base.form-label>Tanggal Cetak</x-base.form-label>
-                    <code class="ml-1 text-danger">*</code>
-                    <div>
-                        <x-base.form-input
-                            id="tanggal_cetak"
-                            type="text"
-                            placeholder="Masukkan Tanggal Cetak"
-                            name="tanggal_cetak"
-                            value="{{ date('d M Y'); }}"
-                        />
-                    </div>
-                </div>
-
                 <div class="col-span-12 md:col-span-6" id="foto-column">
                     <x-base.form-label>Foto 2x3</x-base.form-label>
-                    <code class="ml-1 text-danger">*</code>
+                    <code class="ml-1 text-danger">(Optional)</code>
                     <div>
                         <x-base.form-input
                             class="w-full border border-gray-300 rounded file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-violet-50 hover:file:bg-violet-100 form-upload"
@@ -162,7 +149,7 @@
 
                 <div class="col-span-12 md:col-span-6" id="ttd-column">
                     <x-base.form-label>Tanda Tangan</x-base.form-label>
-                    <code class="ml-1 text-danger">*</code>
+                    <code class="ml-1 text-danger">(Optional)</code>
                     <div>
                         <x-base.form-input
                             class="w-full border border-gray-300 rounded file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-violet-50 hover:file:bg-violet-100 form-upload"
@@ -184,6 +171,7 @@
                             name="istri_suami"
                             class="tom-select w-full"
                             data-placeholder="Pilih Istri / Suami"
+                            data-header="Pilih Istri / Suami"
                         >
                             <option></option>
                             <option value="Istri">Istri</option>
@@ -194,7 +182,7 @@
 
                 <div class="col-span-12 md:col-span-6" id="nama-istri-suami-column">
                     <x-base.form-label>Nama Istri / Suami</x-base.form-label>
-                    <code class="ml-1 text-danger">*</code>
+                    <code class="ml-1 text-danger">(Optional)</code>
                     <div>
                         <x-base.form-input
                             id="nama_istri_suami"
@@ -208,7 +196,7 @@
 
                 <div class="col-span-12 md:col-span-6" id="nik-istri-suami-column">
                     <x-base.form-label>NIK Istri / Suami</x-base.form-label>
-                    <code class="ml-1 text-danger">*</code>
+                    <code class="ml-1 text-danger">(Optional)</code>
                     <div>
                         <x-base.form-input
                             id="nik_istri_suami"
@@ -250,7 +238,7 @@
 
                 <div class="col-span-12 md:col-span-6" id="alamat-dua-column">
                     <x-base.form-label>Alamat 2</x-base.form-label>
-                    <code class="ml-1 text-danger">*</code>
+                    <code class="ml-1 text-danger">(Optional)</code>
                     <div>
                         <x-base.form-input
                             id="alamat2"
