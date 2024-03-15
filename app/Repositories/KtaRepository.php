@@ -11,7 +11,7 @@ class KtaRepository
 {
     public function generateTabulator(int $size = 10, array $filters = []): LengthAwarePaginator
     {
-        $kta = Kta::latest();
+        $kta = DB::table('kta');
 
         foreach ($filters as $key => $value) {
             if ($key == 'value' && $value) {
