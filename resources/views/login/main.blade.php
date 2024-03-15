@@ -39,8 +39,8 @@
                                         class="intro-x login__input block min-w-full px-4 py-3 xl:min-w-[350px]"
                                         id="email"
                                         type="text"
-                                        value="admin@gmail.com"
                                         placeholder="Email"
+                                        value="{{ old('email') }}"
                                     />
                                 </div>
                                 <div>
@@ -49,8 +49,8 @@
                                         class="login__input mt-4 block min-w-full px-4 py-3 xl:min-w-[350px]"
                                         id="password"
                                         type="password"
-                                        value="password"
                                         placeholder="Kata Sandi"
+                                        value="{{ old('password') }}"
                                     />
                                 </div>
                             </div>
