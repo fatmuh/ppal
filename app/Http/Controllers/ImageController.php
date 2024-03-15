@@ -10,7 +10,7 @@ class ImageController extends Controller
     public function getImage(Request $request)
     {
         // URL gambar dari domain eksternal
-        $imageUrl = 'https://kta.ppal.or.id/ppal/' . $request->input('image');
+        $imageUrl = 'https://files.ppal.or.id/ppal/' . $request->input('image');
 
         // Menggunakan GuzzleHttp untuk mengambil gambar
         $client = new Client();
