@@ -75,6 +75,41 @@
                     />
                     Tambah KTA
                 </x-base.button>
+                <x-base.menu>
+                    <x-base.menu.button
+                        class="px-2 box"
+                        as="x-base.button"
+                    >
+                        <span class="flex items-center justify-center w-5 h-5">
+                            <x-base.lucide
+                                class="w-4 h-4"
+                                icon="menu"
+                            />
+                        </span>
+                    </x-base.menu.button>
+                    <x-base.menu.items class="w-40">
+                        <a
+                            class="font-medium cursor-pointer flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-slate-200/60 dark:bg-darkmode-600 dark:hover:bg-darkmode-400 dropdown-item"
+                            href="{{ route('kta.export') }}"
+                            id="download-xlsx"
+                        >
+                            <x-base.lucide
+                                class="w-4 h-4 mr-2"
+                                icon="file-up"
+                            /> Export
+                        </a>
+                        <a
+                            class="font-medium cursor-pointer flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-slate-200/60 dark:bg-darkmode-600 dark:hover:bg-darkmode-400 dropdown-item"
+                            href="{{ route('kta.export.csv') }}"
+                            id="download-xlsx"
+                        >
+                            <x-base.lucide
+                                class="w-4 h-4 mr-2"
+                                icon="file-up"
+                            /> Export CSV
+                        </a>
+                    </x-base.menu.items>
+                </x-base.menu>
             </div>
         </div>
         <div class="overflow-x-auto scrollbar-hidden">

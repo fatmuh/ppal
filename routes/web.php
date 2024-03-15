@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImportExportController;
 use App\Http\Controllers\KtaController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PageController;
@@ -54,4 +55,10 @@ Route::middleware('auth')->group(function () {
     Route::controller(PageController::class)->group(function () {
         Route::get('/admin', 'dashboard')->name('dashboard');
     });
+
+});
+
+Route::controller(ImportExportController::class)->group(function () {
+    Route::get('/admin/kta/export', 'export')->name('kta.export');
+    Route::get('/admin/kta/export/csv', 'exportImport')->name('kta.export.csv');
 });

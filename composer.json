@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.8",
         "league/flysystem-ftp": "^3.0",
         "league/flysystem-sftp": "^3.22",
+        "maatwebsite/excel": "^3.1",
         "proengsoft/laravel-jsvalidation": "^4.8"
     },
     "require-dev": {
