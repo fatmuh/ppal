@@ -125,7 +125,7 @@ img,p{
 		<p class="nik"><b>{{ $data->nik }}</b></p>
 		<p class="tandajasa"><b>{{ $data->tanda_jasa_tertinggi }}</b></p>
 		<p class="foto"><img src="/get-image?image={{ $data->foto }}" width="199px" height="301px"></p>
-		<p class="bar128"><img src='https://kta.ppal.or.id/barcode.php?codetype=code128&sizefactor=1&size=50&text={{ $data->no_kta }}'/></p>
+		<p class="bar128"><img src='https://kta.picode.dev/barcode.php?codetype=code128&sizefactor=1&size=50&text={{ $data->no_kta }}'/></p>
 		<p class="tanggal"><b>{{ $data->tanggal_cetak }}</b></p>
 		<p class="ttd"><b><img src="/get-image?image={{ $data->ttd }}"></b></p>
 	</div>
