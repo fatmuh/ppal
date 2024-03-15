@@ -14,7 +14,7 @@
 <body class="bg-gray-100">
 
     <div class="bg-gray-100 min-h-screen flex items-center justify-center py-1">
-        <img src="{{ asset('assets/img/logo.png') }}" alt="PPAL">
+        <a href="{{ route('dashboard') }}"><img src="{{ asset('assets/img/logo.png') }}" alt="PPAL"></a>
     </div>
     <div class="bg-gray-100 min-h-screen flex items-center justify-center py-4">
 
