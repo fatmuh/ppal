@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ImportExportController;
 use App\Http\Controllers\KtaController;
 use App\Http\Controllers\LandingController;
@@ -63,4 +64,6 @@ Route::controller(ImportExportController::class)->group(function () {
     Route::get('/admin/kta/export/csv', 'exportImport')->name('kta.export.csv');
 });
 
-Route::get('/get-image', 'ImageController@getImage');
+Route::controller(ImageController::class)->group(function () {
+    Route::get('/get-image', 'getImage')->name('kta.get.image');
+});
