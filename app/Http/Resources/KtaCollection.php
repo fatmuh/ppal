@@ -16,7 +16,7 @@ class KtaCollection extends JsonResource
     {
         return [
             'id'                    => $this->id,
-            'no_kta'                => $this->no_kta,
+            'no_kta'                => $this->no_kta ?? '-',
             'full_name'             => $this->full_name,
             'ttl'                   => $this->ttl,
             'agama'                 => $this->agama,
