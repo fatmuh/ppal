@@ -31,6 +31,16 @@ class KtaRepository
         return Kta::whereId($id)->firstOrFail();
     }
 
+    public function getKtaByNoKta(?string $no_kta): ?Kta
+    {
+        return Kta::where('no_kta', $no_kta)->first();
+    }
+
+    public function getKtaByNik(?string $nik): ?Kta
+    {
+        return Kta::where('nik', $nik)->first();
+    }
+
     public function getTotalKta(): int
     {
         return Kta::count();
@@ -47,8 +57,8 @@ class KtaRepository
         string $tanda_jasa_tertinggi,
         ?string $tanggal_cetak,
         string $istri_suami,
-        string $nama_istri_suami,
-        string $nik_istri_suami,
+        ?string $nama_istri_suami,
+        ?string $nik_istri_suami,
         string $alamat1,
         ?string $alamat2,
         string $wil_rayon,

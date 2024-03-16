@@ -64,7 +64,7 @@ class KtaController extends Controller
         $result = $this->ktaService->saveKta(request: $request);
 
         if ($result->code == Response::HTTP_OK) {
-            return redirect()->route('kta.list')->with('success-message', $result->message);
+            return redirect()->route('kta.list')->with('ok-message', $result->message);
         }
 
         return redirect()->route('kta.list')->with('error-message', $result->message);
@@ -75,7 +75,7 @@ class KtaController extends Controller
         $result = $this->ktaService->updateKta(request: $request, id: $id);
 
         if ($result->code == Response::HTTP_OK) {
-            return redirect()->route('kta.list')->with('success-message', $result->message);
+            return redirect()->route('kta.list')->with('ok-message', $result->message);
         }
 
         return redirect()->route('kta.list')->with('error-message', $result->message);

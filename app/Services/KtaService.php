@@ -62,6 +62,25 @@ class KtaService
     {
         DB::beginTransaction();
         try {
+            if($request->no_kta != null) {
+                $findKta = $this->ktaRepository->getKtaByNoKta($request->no_kta);
+                if ($findKta) {
+                    return (object) [
+                        'code'    => Response::HTTP_BAD_REQUEST,
+                        'message' => 'No. KTA sudah ada sebelumnya!'
+                    ];
+                }
+            }
+
+            if($request->nik != null) {
+                $findNik = $this->ktaRepository->getKtaByNik($request->nik);
+                if ($findNik) {
+                    return (object) [
+                        'code'    => Response::HTTP_BAD_REQUEST,
+                        'message' => 'NIK sudah ada sebelumnya!'
+                    ];
+                }
+            }
             $kta = $this->ktaRepository->saveKta(
                 no_kta: $request->no_kta,
                 full_name: $request->full_name,
@@ -73,8 +92,8 @@ class KtaService
                 tanda_jasa_tertinggi: $request->tanda_jasa_tertinggi,
                 tanggal_cetak: $request->tanggal_cetak,
                 istri_suami: $request->istri_suami,
-                nama_istri_suami: $request->nama_istri_suami,
-                nik_istri_suami: $request->nik_istri_suami,
+                nama_istri_suami: $request->nama_istri_suami ?? '-',
+                nik_istri_suami: $request->nik_istri_suami ?? '-',
                 alamat1: $request->alamat1,
                 alamat2: $request->alamat2,
                 wil_rayon: $request->wil_rayon,
@@ -111,7 +130,7 @@ class KtaService
 
         return (object) [
             'code'    => Response::HTTP_OK,
-            'message' => 'Berhasil menambahkan data KTA!'
+            'message' => 'Berhasil menambahkan data KTA! ' . $request->no_kta
         ];
     }
 
@@ -119,6 +138,26 @@ class KtaService
     {
         DB::beginTransaction();
         try {
+            if($request->no_kta != null) {
+                $findKta = $this->ktaRepository->getKtaByNoKta($request->no_kta);
+                if ($findKta) {
+                    return (object) [
+                        'code'    => Response::HTTP_BAD_REQUEST,
+                        'message' => 'No. KTA sudah ada sebelumnya!'
+                    ];
+                }
+            }
+
+            if($request->nik != null) {
+                $findNik = $this->ktaRepository->getKtaByNik($request->nik);
+                if ($findNik) {
+                    return (object) [
+                        'code'    => Response::HTTP_BAD_REQUEST,
+                        'message' => 'NIK sudah ada sebelumnya!'
+                    ];
+                }
+            }
+            
             $kta = $this->ktaRepository->updateKta(
                 id: $id,
                 no_kta: $request->no_kta,
@@ -169,7 +208,7 @@ class KtaService
 
         return (object) [
             'code'    => Response::HTTP_OK,
-            'message' => 'Berhasil mengubah data KTA!'
+            'message' => 'Berhasil mengubah data KTA! ' . $request->no_kta
         ];
     }
 

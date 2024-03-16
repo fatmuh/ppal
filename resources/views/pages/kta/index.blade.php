@@ -24,6 +24,32 @@
     <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
         <h2 class="mr-auto text-lg font-medium">List KTA</h2>
     </div>
+    @if (session('ok-message'))
+        <div class="mt-5 grid grid-cols-12 gap-6">
+            <div class="intro-y col-span-12 sm:col-span-6 xl:col-span-4">
+                    <x-base.alert
+                        class="mt-2 mb-2 flex items-center"
+                        variant="primary"
+                    >
+                        <x-base.lucide
+                            class="mr-2 h-6 w-6"
+                            icon="AlertCircle"
+                        />
+                        {{ session('ok-message') }}
+                        <x-base.alert.dismiss-button
+                            class="text-white"
+                            type="button"
+                            aria-label="Close"
+                        >
+                            <x-base.lucide
+                                class="h-4 w-4"
+                                icon="X"
+                            />
+                        </x-base.alert.dismiss-button>
+                    </x-base.alert>
+            </div>
+        </div>
+    @endif
     <!-- BEGIN: HTML Table Data -->
     <div class="p-5 mt-5 intro-y box">
         <div class="flex flex-col sm:flex-row sm:items-end xl:items-start">
