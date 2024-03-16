@@ -138,7 +138,8 @@ class KtaService
     {
         DB::beginTransaction();
         try {
-            if($request->no_kta != null) {
+            $findData = $this->ktaRepository->getKtaById(id: $id);
+            if($request->no_kta != null && $request->no_kta != $findData->no_kta) {
                 $findKta = $this->ktaRepository->getKtaByNoKta($request->no_kta);
                 if ($findKta) {
                     return (object) [
@@ -148,7 +149,7 @@ class KtaService
                 }
             }
 
-            if($request->nik != null) {
+            if($request->nik != null && $request->nik != $findData->nik) {
                 $findNik = $this->ktaRepository->getKtaByNik($request->nik);
                 if ($findNik) {
                     return (object) [
