@@ -51,6 +51,13 @@ class KtaService
         ];
     }
 
+    public function getDetail(int $id): array
+    {
+        $kta = $this->ktaRepository->getKtaById(id: $id);
+
+        return compact('kta');
+    }
+
     public function saveKta(KtaRequest $request): object
     {
         DB::beginTransaction();

@@ -122,6 +122,7 @@
     </div>
     <!-- END: HTML Table Data -->
     @include('pages.kta.modals._form-kta')
+    @include('pages.kta.modals._detail')
 @endsection
 
 @once

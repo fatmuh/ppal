@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
         Route::patch('/update/{id}', 'update')->name('update');
         Route::delete('/delete/{id}', 'delete')->name('delete');
         Route::get('/detail/{id}', 'detail')->name('detail');
+        Route::get('/detail-data/{id}', 'detailData')->name('detail.data');
         Route::get('/detail/card/front/{id}', 'front')->name('front');
         Route::get('/detail/card/back/{id}', 'back')->name('back');
     });

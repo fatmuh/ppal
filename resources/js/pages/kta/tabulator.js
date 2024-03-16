@@ -59,17 +59,6 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
                     download: false,
                 },
                 {
-                    title: "Pangkat Terakhir",
-                    minWidth: 150,
-                    responsive: 0,
-                    field: "pangkat_terakhir",
-                    vertAlign: "middle",
-                    headerHozAlign: "center",
-                    hozAlign: "center",
-                    print: false,
-                    download: false,
-                },
-                {
                     title: "NIK",
                     minWidth: 150,
                     responsive: 0,
@@ -115,6 +104,10 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
                     download: false,
                     formatter(cell, formatterParams) {
                             return `<div class="flex items-center lg:justify-center">
+
+                            <a href="javascript:;" class="flex items-center mr-3 text-blue-700 detail-kta" data-href="${cell.getData().urls.data_url}">
+                                <i data-lucide="list" class="w-4 h-4 mr-1"></i> Detail
+                            </a>
 
                             <a href="javascript:;" class="flex items-center mr-3 text-yellow-600 btn-kta-edit" data-url="${cell.getData().urls.detail_url}" data-form-url="${cell.getData().urls.update_url}">
                                 <i data-lucide="pencil" class="w-4 h-4 mr-1"></i> Edit

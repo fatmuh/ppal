@@ -91,4 +91,11 @@ class KtaController extends Controller
 
         return redirect()->route('kta.list')->with('error-message', $result->message);
     }
+
+    public function detailData(int $id): View
+    {
+        $data = $this->ktaService->getDetail(id: $id);
+
+        return view('pages.kta.modals._data', $data);
+    }
 }

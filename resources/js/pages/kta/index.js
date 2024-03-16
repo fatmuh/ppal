@@ -61,6 +61,24 @@ import "./tabulator";
         modal.toggle();
     });
 
+    $(document).on('click', '.detail-kta', function () {
+        const url = $(this).data('href');
+        const el = document.querySelector("#kta-detail-modal");
+        const modal = tailwind.Modal.getOrCreateInstance(el);
+        $('#detail-kta-header-title').text('Detail Data KTA');
+        $.ajax({
+                url,
+                type: 'GET',
+                datatype: 'html',
+            })
+            .done(function (data) {
+                $("#kta-detail-modal .modal-body").empty().html(data)
+                modal.toggle();
+            }).fail(function (jqXHR, textStatus, thrownError) {
+                alert('Request failed: ' + textStatus)
+            });
+    });
+
     function formReset(method = 'POST', url) {
         const form = $("form#form-kta");
         form[0].reset();
