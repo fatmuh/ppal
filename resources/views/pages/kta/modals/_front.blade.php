@@ -124,10 +124,10 @@ img,p{
 		<p class="pangkat"><b>{{ $data->pangkat_terakhir }}</b></p>
 		<p class="nik"><b>{{ $data->nik }}</b></p>
 		<p class="tandajasa"><b>{{ $data->tanda_jasa_tertinggi }}</b></p>
-		<p class="foto"><img src="{{ route('kta.get.image') }}" width="199px" height="301px"></p>
+		<p class="foto"><img src="https://database.ppal.or.id/ppal/{{ $data->foto }}" width="199px" height="301px"></p>
 		<p class="bar128"><img src='https://kta.ppal.or.id/barcode.php?codetype=code128&sizefactor=1&size=50&text={{ $data->no_kta }}'/></p>
 		<p class="tanggal"><b>{{ \Carbon\Carbon::now()->locale('id_ID')->isoFormat('DD MMMM YYYY') }}</b></p>
-		<p class="ttd"><b><img src=""></b></p>
+		<p class="ttd"><b><img src="https://database.ppal.or.id/ppal/{{ $data->ttd }}"></b></p>
 	</div>
 	<button id="btn" style="font-size:30px;">Download</button>
 </body>
