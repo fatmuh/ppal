@@ -23,7 +23,7 @@ class ImageController extends Controller
             // Dapatkan tipe konten gambar jika tersedia
             $contentType = $response->hasHeader('Content-Type') ? $response->getHeader('Content-Type')[0] : 'application/octet-stream';
 
-            // Kembalikan gambar langsung dalam respons
+            // Kembalikan gambar langsung dalam respons dengan header yang sesuai
             return response($imageContent, 200)->header('Content-Type', $contentType);
         } else {
             return response()->json(['message' => 'Failed to download image'], 500);
