@@ -10,18 +10,23 @@ class ImageController extends Controller
 {
     public function getImage(Request $request)
     {
-        $imageUrl = 'https://database.ppal.or.id/ppal/' . $request->input('image');
+        $url = 'https://database.ppal.or.id/ppal/foto/MxmEsJHod9nH4KGN8azuZBv6cn8Et2lWLAYE3sNW.jpg';
+        $client = new Client();
+        
+        // Unduh gambar dari URL
+        $response = $client->get($url);
 
-        try {
-            $response = Http::get($imageUrl);
+        if ($response->getStatusCode() == 200) {
+            // Ambil konten gambar
+            $imageContent = $response->getBody()->getContents();
 
-            if ($response->successful()) {
-                return response($response->body())->header('Content-Type', 'image/jpeg');
-            } else {
-                return response('Error fetching image', 404);
-            }
-        } catch (\Exception $e) {
-            return response('Exception occurred: ' . $e->getMessage(), 500);
+            // Dapatkan tipe konten gambar
+            $contentType = $response->getHeader('Content-Type')[0];
+
+            // Kembalikan gambar langsung dalam respons
+            return response($imageContent, 200)->header('Content-Type', $contentType);
+        } else {
+            return response()->json(['message' => 'Failed to download image'], 500);
         }
     }
 }
