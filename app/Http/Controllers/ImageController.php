@@ -10,13 +10,18 @@ class ImageController extends Controller
 {
     public function getImage(Request $request)
     {
-        // URL gambar dari domain eksternal
         $imageUrl = 'https://database.ppal.or.id/ppal/' . $request->input('image');
 
-        // Mengambil gambar menggunakan Laravel HTTP Client
-        $response = Http::get($imageUrl);
+        try {
+            $response = Http::get($imageUrl);
 
-        // Mengembalikan gambar kepada klien
-        return response($response->body())->header('Content-Type', 'image/jpeg');
+            if ($response->successful()) {
+                return response($response->body())->header('Content-Type', 'image/jpeg');
+            } else {
+                return response('Error fetching image', 404);
+            }
+        } catch (\Exception $e) {
+            return response('Exception occurred: ' . $e->getMessage(), 500);
+        }
     }
 }
