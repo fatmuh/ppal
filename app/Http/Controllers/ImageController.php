@@ -22,8 +22,11 @@ class ImageController extends Controller
                 if (!empty($contentType)) {
                     return response($response->getBody())->header('Content-Type', $contentType[0]);
                 } else {
+                    // Log the headers received for debugging purposes
                     Log::error("Content-Type header not found for URL: " . $imageUrl);
-                    return response("Content-Type header not found", 500);
+                    Log::error("Response headers: " . json_encode($response->getHeaders()));
+                    // Use a default Content-Type as fallback
+                    return response($response->getBody())->header('Content-Type', 'image/jpeg');
                 }
             } else {
                 Log::error("Failed to retrieve image. Status code: " . $response->getStatusCode());
