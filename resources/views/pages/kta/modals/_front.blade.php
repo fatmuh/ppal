@@ -136,68 +136,64 @@ img,p{
 <script src="{{ asset('assets/js/bluebird.js') }}"></script>
 <script src="{{ asset('assets/js/html2canvas.min.js') }}"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	// canvas生成图片
-        $("#btn").on("click", function () {
-            var getPixelRatio = function (context) { // 获取设备的PixelRatio
-                var backingStore = context.backingStorePixelRatio ||
-                    context.webkitBackingStorePixelRatio ||
-                    context.mozBackingStorePixelRatio ||
-                    context.msBackingStorePixelRatio ||
-                    context.oBackingStorePixelRatio ||
-                    context.backingStorePixelRatio || 0.5;
-                return (window.devicePixelRatio || 0.5) / backingStore;
-            };
-            //生成的图片名称
+    $(document).ready(function() {
+        var imagesLoaded = 0;
+        var totalImages = $("#imgDiv img").length;
+    
+        $("#imgDiv img").on('load', function() {
+            imagesLoaded++;
+            if (imagesLoaded === totalImages) {
+                $("#btn").on("click", function() {
+                    generateCanvas();
+                });
+            }
+        }).each(function() {
+            if (this.complete) $(this).trigger('load');
+        });
+    
+        function generateCanvas() {
             var imgName = "{{ $data->full_name }}_depan.jpg";
             var shareContent = document.getElementById("imgDiv");
-            var width = "1003";
-            var height = "661";
+            var width = 1003;
+            var height = 661;
             var canvas = document.createElement("canvas");
             var context = canvas.getContext('2d');
             canvas.width = width;
             canvas.height = height;
-            canvas.style.width = width + 'px';
-            canvas.style.height = height + 'px';
-
+    
             var opts = {
                 canvas: canvas,
                 width: width,
                 height: height,
                 dpi: window.devicePixelRatio
             };
-            html2canvas(shareContent, opts).then(function (canvas) {
-                context.imageSmoothingEnabled = false;
-                context.webkitImageSmoothingEnabled = false;
-                context.msImageSmoothingEnabled = false;
+    
+            html2canvas(shareContent, opts).then(function(canvas) {
                 context.imageSmoothingEnabled = false;
                 var dataUrl = canvas.toDataURL('image/jpeg', 1.0);
-                dataURIToBlob(imgName, dataUrl, callback);
+                dataURIToBlob(imgName, dataUrl, downloadBlob);
             });
-        });
-})
-	
-
-        // edited from https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob#Polyfill
-       var dataURIToBlob =  function (imgName, dataURI, callback) {
-            var binStr = atob(dataURI.split(',')[1]),
-                len = binStr.length,
-                arr = new Uint8Array(len);
-
+        }
+    
+        function dataURIToBlob(imgName, dataURI, callback) {
+            var binStr = atob(dataURI.split(',')[1]);
+            var len = binStr.length;
+            var arr = new Uint8Array(len);
+    
             for (var i = 0; i < len; i++) {
                 arr[i] = binStr.charCodeAt(i);
             }
-
-            callback(imgName, new Blob([arr]));
+    
+            callback(imgName, new Blob([arr], {type: 'image/jpeg'}));
         }
-
-        var callback = function (imgName, blob) {
-            var triggerDownload = $("<a>").attr("href", URL.createObjectURL(blob)).attr("download", imgName).appendTo("body").on("click", function () {
-                if (navigator.msSaveBlob) {
-                    return navigator.msSaveBlob(blob, imgName);
-                }
-            });
-            triggerDownload[0].click();
-            triggerDownload.remove();
-        };
-</script>
+    
+        function downloadBlob(imgName, blob) {
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = imgName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    });
+    </script>
