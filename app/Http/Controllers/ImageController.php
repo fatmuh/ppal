@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ImageController extends Controller
 {
@@ -12,11 +13,10 @@ class ImageController extends Controller
         // URL gambar dari domain eksternal
         $imageUrl = 'https://database.ppal.or.id/ppal/' . $request->input('image');
 
-        // Menggunakan GuzzleHttp untuk mengambil gambar
-        $client = new Client();
-        $response = $client->get($imageUrl);
+        // Mengambil gambar menggunakan Laravel HTTP Client
+        $response = Http::get($imageUrl);
 
         // Mengembalikan gambar kepada klien
-        return response($response->getBody())->header('Content-Type', 'image/jpeg');
+        return response($response->body())->header('Content-Type', 'image/jpeg');
     }
 }
