@@ -20,8 +20,8 @@ class ImageController extends Controller
             // Ambil konten gambar
             $imageContent = $response->getBody()->getContents();
 
-            // Dapatkan tipe konten gambar
-            $contentType = $response->getHeader('Content-Type')[0];
+            // Dapatkan tipe konten gambar jika tersedia
+            $contentType = $response->hasHeader('Content-Type') ? $response->getHeader('Content-Type')[0] : 'application/octet-stream';
 
             // Kembalikan gambar langsung dalam respons
             return response($imageContent, 200)->header('Content-Type', $contentType);
