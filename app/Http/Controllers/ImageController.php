@@ -19,21 +19,34 @@ class ImageController extends Controller
         $client = new Client();
         $response = $client->get($imageUrl);
 
-        // Mendapatkan konten gambar
-        $imageContent = $response->getBody()->getContents();
-
-        // Menyimpan gambar ke penyimpanan publik
-        $imageName = uniqid() . '.jpg'; // Ubah nama file jika perlu
-        Storage::put('foto/' . $imageName, $imageContent);
-
-        // Penjadwalan untuk menghapus gambar setelah 10 detik
-        $deleteJob = (new DeleteImageJob($imageName))->delay(now()->addSeconds(25));
-        Bus::dispatch($deleteJob);
-
-        // Mendapatkan URL gambar yang baru diunggah
-        $imageUrl = Storage::url('foto/'.$imageName);
-
-        // Mengembalikan URL gambar kepada klien
-        return redirect($imageUrl);
+        // Mengembalikan gambar kepada klien
+        return response($response->getBody())->header('Content-Type', 'image/jpeg');
     }
+    
+    // public function getImage(Request $request)
+    // {
+    //     // URL gambar dari domain eksternal
+    //     $imageUrl = 'https://database.ppal.or.id/ppal/' . $request->input('image');
+
+    //     // Menggunakan GuzzleHttp untuk mengambil gambar
+    //     $client = new Client();
+    //     $response = $client->get($imageUrl);
+
+    //     // Mendapatkan konten gambar
+    //     $imageContent = $response->getBody()->getContents();
+
+    //     // Menyimpan gambar ke penyimpanan publik
+    //     $imageName = uniqid() . '.jpg'; // Ubah nama file jika perlu
+    //     Storage::put('foto/' . $imageName, $imageContent);
+
+    //     // Penjadwalan untuk menghapus gambar setelah 10 detik
+    //     $deleteJob = (new DeleteImageJob($imageName))->delay(now()->addSeconds(25));
+    //     Bus::dispatch($deleteJob);
+
+    //     // Mendapatkan URL gambar yang baru diunggah
+    //     $imageUrl = Storage::url('foto/'.$imageName);
+
+    //     // Mengembalikan URL gambar kepada klien
+    //     return redirect($imageUrl);
+    // }
 }
