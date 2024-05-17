@@ -20,5 +20,5 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
+          ssh-private-key: ${{ secrets.KEY }}
           script: "export APP_ENV=${{ secrets.APP_ENV }} && sh /var/bash_script/dashboard-ppal.sh"
