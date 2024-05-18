@@ -2,7 +2,7 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "NODE_OPTIONS='--max-old-space-size=4096' vite build"
     },
     "dependencies": {
         "@ckeditor/ckeditor5-build-balloon": "^35.1.0",
