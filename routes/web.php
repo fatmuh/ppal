@@ -22,7 +22,16 @@ use App\Http\Controllers\UserController;
 
 Route::controller(LandingController::class)->name('landing.')->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/search', 'search')->name('search');
+    Route::post('/search', 'searchData')->name('search.data');
+    Route::get('/detail', 'detail')->name('detail');
     Route::post('/store', 'store')->name('store');
+    Route::patch('/update/{id}', 'update')->name('update');
+});
+
+Route::controller(KtaController::class)->prefix('kta')->name('kta.')->group(function () {
+    Route::get('/detail/card/front/{id}', 'front')->name('front');
+    Route::get('/detail/card/back/{id}', 'back')->name('back');
 });
 
 Route::controller(AuthController::class)->middleware('guest')->name('auth.')->group(function () {
@@ -41,8 +50,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('/delete/{id}', 'delete')->name('delete');
         Route::get('/detail/{id}', 'detail')->name('detail');
         Route::get('/detail-data/{id}', 'detailData')->name('detail.data');
-        Route::get('/detail/card/front/{id}', 'front')->name('front');
-        Route::get('/detail/card/back/{id}', 'back')->name('back');
     });
 
     Route::controller(UserController::class)->prefix('admin/users')->name('user.')->group(function () {

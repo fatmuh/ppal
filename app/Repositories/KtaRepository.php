@@ -31,6 +31,13 @@ class KtaRepository
         return Kta::whereId($id)->firstOrFail();
     }
 
+    public function getKtaByNoKtaNik($kta_nik): Kta
+    {
+        return Kta::where('no_kta', $kta_nik)
+              ->orWhere('nik', $kta_nik)
+              ->firstOrFail();
+    }
+
     public function getKtaByNoKta(?string $no_kta): ?Kta
     {
         return Kta::where('no_kta', $no_kta)->first();

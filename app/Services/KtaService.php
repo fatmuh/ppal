@@ -51,6 +51,14 @@ class KtaService
         ];
     }
 
+    public function getDataKta($search)
+    {
+        // Menggunakan parameter search langsung
+        $kta = $this->ktaRepository->getKtaByNoKtaNik($search);
+
+        return compact('kta');
+    }
+
     public function getDetail(int $id): array
     {
         $kta = $this->ktaRepository->getKtaById(id: $id);
@@ -131,6 +139,52 @@ class KtaService
         return (object) [
             'code'    => Response::HTTP_OK,
             'message' => 'Berhasil menambahkan data KTA! ' . $request->no_kta
+        ];
+    }
+
+    public function updateKtaLanding(KtaRequest $request, $id): object
+    {
+        DB::beginTransaction();
+        try {
+            $findData = $this->ktaRepository->getKtaById(id: $id);
+
+            if($request->nik != null && $request->nik != $findData->nik) {
+                $findNik = $this->ktaRepository->getKtaByNik($request->nik);
+                if ($findNik) {
+                    return (object) [
+                        'code'    => Response::HTTP_BAD_REQUEST,
+                        'message' => 'NIK sudah ada sebelumnya!'
+                    ];
+                }
+            }
+            
+            $this->ktaRepository->updateKta(
+                id: $id,
+                no_kta: $findData->no_kta,
+                full_name: $request->full_name,
+                ttl: $request->ttl,
+                agama: $request->agama,
+                gol_darah: $request->gol_darah,
+                pangkat_terakhir: $request->pangkat_terakhir,
+                nik: $request->nik,
+                tanda_jasa_tertinggi: $request->tanda_jasa_tertinggi,
+                tanggal_cetak: $request->tanggal_cetak,
+                istri_suami: $request->istri_suami,
+                nama_istri_suami: $request->nama_istri_suami,
+                nik_istri_suami: $request->nik_istri_suami,
+                alamat1: $request->alamat1,
+                alamat2: $request->alamat2,
+                wil_rayon: $request->wil_rayon,
+            );
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            throw $e;
+        }
+        DB::commit();
+
+        return (object) [
+            'code'    => Response::HTTP_OK,
+            'message' => 'Berhasil mengubah data KTA! ' . $request->no_kta
         ];
     }
 
