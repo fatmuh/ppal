@@ -50,6 +50,8 @@ return [
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
             'port'     => env('FTP_PORT', 21),
+            'passive' => true,
+            'ignorePassiveAddress' => true,
             'root' => env('FTP_ROOT'),
             'ssl'      => env('FTP_SSL', false),
             'timeout'  => env('FTP_TIMEOUT', 30)
@@ -66,6 +68,14 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+
+        'google' => [
+            'driver' => 'google',
+            'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
+            'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
+            'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
+            'folder' => env('GOOGLE_DRIVE_FOLDER'),
+          ]
 
     ],
 

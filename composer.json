@@ -16,7 +16,8 @@
         "league/flysystem-ftp": "^3.0",
         "league/flysystem-sftp": "^3.22",
         "maatwebsite/excel": "^3.1",
-        "proengsoft/laravel-jsvalidation": "^4.8"
+        "proengsoft/laravel-jsvalidation": "^4.8",
+        "yaza/laravel-google-drive-storage": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -237,7 +237,7 @@ class KtaService
                     if (!empty($kta->foto)) {
                         Storage::disk('ftp')->delete($kta->foto);
                     }
-                    
+
                     $fotoFilePath = Storage::disk('ftp')->putFile('foto' , $request->foto);
                 }
                 $kta->foto = $fotoFilePath;
