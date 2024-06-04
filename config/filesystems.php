@@ -50,7 +50,7 @@ return [
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
             'port'     => env('FTP_PORT', 21),
-            'passive' => true,
+            'passive' => false,
             'ignorePassiveAddress' => true,
             'root' => env('FTP_ROOT'),
             'ssl'      => env('FTP_SSL', false),
