@@ -110,10 +110,10 @@ class KtaService
             if ($request->hasFile('foto')) {
                 if ($request->has('foto') && $request->foto != null) {
                     if (!empty($kta->foto)) {
-                        Storage::disk('ftp')->delete($kta->foto);
+                        Storage::disk('spaces')->delete($kta->foto);
                     }
-                    
-                    $fotoFilePath = Storage::disk('ftp')->putFile('foto' , $request->foto);
+
+                    $fotoFilePath = Storage::disk('spaces')->putFile('foto' , $request->foto);
                 }
                 $kta->foto = $fotoFilePath;
                 $kta->save();
@@ -122,10 +122,10 @@ class KtaService
             if ($request->hasFile('ttd')) {
                 if ($request->has('ttd') && $request->ttd != null) {
                     if (!empty($kta->ttd)) {
-                        Storage::disk('ftp')->delete($kta->ttd);
+                        Storage::disk('spaces')->delete($kta->ttd);
                     }
-                    
-                    $ttdFilePath = Storage::disk('ftp')->putFile('ttd' , $request->ttd);
+
+                    $ttdFilePath = Storage::disk('spaces')->putFile('ttd' , $request->ttd);
                 }
                 $kta->ttd = $ttdFilePath;
                 $kta->save();
@@ -157,7 +157,7 @@ class KtaService
                     ];
                 }
             }
-            
+
             $this->ktaRepository->updateKta(
                 id: $id,
                 no_kta: $findData->no_kta,
@@ -212,7 +212,7 @@ class KtaService
                     ];
                 }
             }
-            
+
             $kta = $this->ktaRepository->updateKta(
                 id: $id,
                 no_kta: $request->no_kta,
@@ -235,10 +235,10 @@ class KtaService
             if ($request->hasFile('foto')) {
                 if ($request->has('foto') && $request->foto != null) {
                     if (!empty($kta->foto)) {
-                        Storage::disk('ftp')->delete($kta->foto);
+                        Storage::disk('spaces')->delete($kta->foto);
                     }
 
-                    $fotoFilePath = Storage::disk('ftp')->putFile('foto' , $request->foto);
+                    $fotoFilePath = Storage::disk('spaces')->putFile('foto' , $request->foto);
                 }
                 $kta->foto = $fotoFilePath;
                 $kta->save();
@@ -247,10 +247,10 @@ class KtaService
             if ($request->hasFile('ttd')) {
                 if ($request->has('ttd') && $request->ttd != null) {
                     if (!empty($kta->ttd)) {
-                        Storage::disk('ftp')->delete($kta->ttd);
+                        Storage::disk('spaces')->delete($kta->ttd);
                     }
-                    
-                    $ttdFilePath = Storage::disk('ftp')->putFile('ttd' , $request->ttd);
+
+                    $ttdFilePath = Storage::disk('spaces')->putFile('ttd' , $request->ttd);
                 }
                 $kta->ttd = $ttdFilePath;
                 $kta->save();
@@ -276,10 +276,10 @@ class KtaService
             }
 
             if($kta->foto != null && $kta->ttd != null) {
-                Storage::disk(env('DISK_PUBLIC'))->delete($kta->foto);
-                Storage::disk(env('DISK_PUBLIC'))->delete($kta->ttd);
+                Storage::disk('spaces')->delete($kta->foto);
+                Storage::disk('spaces')->delete($kta->ttd);
             }
-            
+
             $this->ktaRepository->deleteKta(
                 id: $id,
             );

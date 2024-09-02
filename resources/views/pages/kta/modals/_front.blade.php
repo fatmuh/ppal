@@ -8,17 +8,17 @@
             margin: 0;
             padding: 0;
         }
-        
-        
+
+
         h2 {
             background: #efefef;
             margin: 10px;
         }
-        
+
         .toPic {
             display: none;
         }
-        
+
 .box{
     width: 500px;
     height: 312px;
@@ -176,7 +176,7 @@ $(document).ready(function(){
             });
         });
 })
-	
+
 
         // edited from https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob#Polyfill
        var dataURIToBlob =  function (imgName, dataURI, callback) {
