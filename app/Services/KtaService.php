@@ -110,10 +110,10 @@ class KtaService
             if ($request->hasFile('foto')) {
                 if ($request->has('foto') && $request->foto != null) {
                     if (!empty($kta->foto)) {
-                        Storage::disk('spaces')->delete($kta->foto);
+                        Storage::disk('ftp')->delete($kta->foto);
                     }
 
-                    $fotoFilePath = Storage::disk('spaces')->putFile('foto' , $request->foto);
+                    $fotoFilePath = Storage::disk('ftp')->putFile('foto' , $request->foto);
                 }
                 $kta->foto = $fotoFilePath;
                 $kta->save();
@@ -122,10 +122,10 @@ class KtaService
             if ($request->hasFile('ttd')) {
                 if ($request->has('ttd') && $request->ttd != null) {
                     if (!empty($kta->ttd)) {
-                        Storage::disk('spaces')->delete($kta->ttd);
+                        Storage::disk('ftp')->delete($kta->ttd);
                     }
 
-                    $ttdFilePath = Storage::disk('spaces')->putFile('ttd' , $request->ttd);
+                    $ttdFilePath = Storage::disk('ftp')->putFile('ttd' , $request->ttd);
                 }
                 $kta->ttd = $ttdFilePath;
                 $kta->save();
@@ -235,10 +235,10 @@ class KtaService
             if ($request->hasFile('foto')) {
                 if ($request->has('foto') && $request->foto != null) {
                     if (!empty($kta->foto)) {
-                        Storage::disk('spaces')->delete($kta->foto);
+                        Storage::disk('ftp')->delete($kta->foto);
                     }
 
-                    $fotoFilePath = Storage::disk('spaces')->putFile('foto' , $request->foto);
+                    $fotoFilePath = Storage::disk('ftp')->putFile('foto' , $request->foto);
                 }
                 $kta->foto = $fotoFilePath;
                 $kta->save();
@@ -247,10 +247,10 @@ class KtaService
             if ($request->hasFile('ttd')) {
                 if ($request->has('ttd') && $request->ttd != null) {
                     if (!empty($kta->ttd)) {
-                        Storage::disk('spaces')->delete($kta->ttd);
+                        Storage::disk('ftp')->delete($kta->ttd);
                     }
 
-                    $ttdFilePath = Storage::disk('spaces')->putFile('ttd' , $request->ttd);
+                    $ttdFilePath = Storage::disk('ftp')->putFile('ttd' , $request->ttd);
                 }
                 $kta->ttd = $ttdFilePath;
                 $kta->save();
