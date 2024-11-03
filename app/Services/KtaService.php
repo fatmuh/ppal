@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class KtaService
 {
@@ -234,26 +235,52 @@ class KtaService
 
             if ($request->hasFile('foto')) {
                 if ($request->has('foto') && $request->foto != null) {
-                    if (!empty($kta->foto)) {
+                    // Pastikan $kta->foto adalah path sebelum mencoba menghapusnya
+                    if (!empty($kta->foto) && Str::startsWith($kta->foto, 'foto/')) {
                         Storage::disk('ftp')->delete($kta->foto);
                     }
 
-                    $fotoFilePath = Storage::disk('ftp')->putFile('foto' , $request->foto);
+                    try {
+                        // Coba simpan file ke FTP
+                        $fotoFilePath = Storage::disk('ftp')->putFile('foto' , $request->foto);
+
+                        // Jika berhasil, simpan path ke dalam kolom foto
+                        $kta->foto = $fotoFilePath;
+                    } catch (\Exception $e) {
+                        // Jika terjadi error, simpan dalam format base64
+                        $file = $request->file('foto');
+                        $fotoBase64 = base64_encode(file_get_contents($file));
+                        $kta->foto = $fotoBase64;
+                    }
+
+                    // Simpan perubahan pada database
+                    $kta->save();
                 }
-                $kta->foto = $fotoFilePath;
-                $kta->save();
             }
 
             if ($request->hasFile('ttd')) {
                 if ($request->has('ttd') && $request->ttd != null) {
-                    if (!empty($kta->ttd)) {
+                    // Pastikan $kta->ttd adalah path sebelum mencoba menghapusnya
+                    if (!empty($kta->ttd) && Str::startsWith($kta->ttd, 'ttd/')) {
                         Storage::disk('ftp')->delete($kta->ttd);
                     }
 
-                    $ttdFilePath = Storage::disk('ftp')->putFile('ttd' , $request->ttd);
+                    try {
+                        // Coba simpan file ke FTP
+                        $ttdFilePath = Storage::disk('ftp')->putFile('ttd' , $request->ttd);
+
+                        // Jika berhasil, simpan path ke dalam kolom ttd
+                        $kta->ttd = $ttdFilePath;
+                    } catch (\Exception $e) {
+                        // Jika terjadi error, simpan dalam format base64
+                        $file = $request->file('ttd');
+                        $ttdBase64 = base64_encode(file_get_contents($file));
+                        $kta->ttd = $ttdBase64;
+                    }
+
+                    // Simpan perubahan pada database
+                    $kta->save();
                 }
-                $kta->ttd = $ttdFilePath;
-                $kta->save();
             }
         } catch (\Throwable $e) {
             DB::rollBack();
