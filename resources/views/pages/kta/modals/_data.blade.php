@@ -4,49 +4,57 @@
             <div class="flex flex-col pb-5 -mx-5 lg:flex-row">
                 <div class="flex items-center justify-center flex-1 px-5 lg:justify-start">
                     <div class="relative flex-none w-20 h-20 image-fit sm:h-24 sm:w-24 lg:h-32 lg:w-32">
-                        <img
-                            class="rounded-full"
-                            src="{{ ($kta->foto) ?  '/get-image?image='.$kta->foto : 'https://ui-avatars.com/api/?name='. $kta->full_name }}"
-                            alt="Foto - {{ $kta->full_name }}"
-                        />
+                        @if (Str::startsWith($data->ttd, 'ttd/'))
+                            <!-- Jika $data->foto adalah path -->
+                            <img class="rounded-full"
+                            src="{{ $kta->foto ? '/get-image?image=' . $kta->foto : 'https://ui-avatars.com/api/?name=' . $kta->full_name }}"
+                            alt="Foto - {{ $kta->full_name }}" />
+                        @else
+                            <!-- Jika $data->foto adalah base64 -->
+                            <img class="rounded-full"
+                            src="data:image/jpeg;base64,{{ $data->ttd }}"
+                            alt="Foto - {{ $kta->full_name }}" />
+                        @endif
                     </div>
                     <div class="ml-5">
                         <div class="text-lg font-medium sm:whitespace-normal">
                             {{ $kta->full_name }}
                         </div>
-                        <span class="px-2 py-1 rounded
+                        <span
+                            class="px-2 py-1 rounded
                             {{ $kta->istri_suami == 'Suami' ? 'bg-info/20 text-info' : ($kta->istri_suami == 'Istri' ? 'bg-success/20 text-success' : 'bg-warning/20 text-warning') }}">
-                            {{ ($kta->istri_suami == 'Suami') ? 'PEREMPUAN' : 'LAKI-LAKI' }}
+                            {{ $kta->istri_suami == 'Suami' ? 'PEREMPUAN' : 'LAKI-LAKI' }}
                         </span>
                     </div>
                 </div>
-                <div class="flex-1 px-5 pt-5 mt-6 border-t border-l border-r border-slate-200/60 dark:border-darkmode-400 lg:mt-0 lg:border-t-0 lg:pt-0">
+                <div
+                    class="flex-1 px-5 pt-5 mt-6 border-t border-l border-r border-slate-200/60 dark:border-darkmode-400 lg:mt-0 lg:border-t-0 lg:pt-0">
                     <div class="font-medium text-center lg:mt-3 lg:text-left">
                         Informasi Personal
                     </div>
                     <div class="flex flex-col items-center justify-center mt-4 lg:items-start">
                         <table>
                             <tbody>
-                            <tr>
-                                <td>Nomor KTA</td>
-                                <td class="px-2">:</td>
-                                <td class="font-medium text-success"> {{ $kta->no_kta }}</td>
-                            </tr>
-                            <tr>
-                                <td class="pt-2">Tempat, Tanggal Lahir</td>
-                                <td class="px-2 pt-2 font-medium">:</td>
-                                <td class="pt-2 font-medium text-pending"> {{ $kta->ttl }}</td>
-                            </tr>
-                            <tr>
-                                <td class="pt-2">Agama</td>
-                                <td class="px-2 pt-2 font-medium">:</td>
-                                <td class="pt-2 font-medium text-danger"> {{ $kta->agama }}</td>
-                            </tr>
-                            <tr>
-                                <td class="pt-2">Golongan Darah</td>
-                                <td class="px-2 pt-2 font-medium">:</td>
-                                <td class="pt-2 font-medium text-primary"> {{ $kta->gol_darah }}</td>
-                            </tr>
+                                <tr>
+                                    <td>Nomor KTA</td>
+                                    <td class="px-2">:</td>
+                                    <td class="font-medium text-success"> {{ $kta->no_kta }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="pt-2">Tempat, Tanggal Lahir</td>
+                                    <td class="px-2 pt-2 font-medium">:</td>
+                                    <td class="pt-2 font-medium text-pending"> {{ $kta->ttl }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="pt-2">Agama</td>
+                                    <td class="px-2 pt-2 font-medium">:</td>
+                                    <td class="pt-2 font-medium text-danger"> {{ $kta->agama }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="pt-2">Golongan Darah</td>
+                                    <td class="px-2 pt-2 font-medium">:</td>
+                                    <td class="pt-2 font-medium text-primary"> {{ $kta->gol_darah }}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -117,7 +125,8 @@
                     <div class="col-span-12 lg:col-span-6">
                         <div class="flex items-center pb-3 border-b border-slate-200 dark:border-darkmode-400">
                             <div>
-                                <div class="text-slate-500">Nomor Induk Kependudukan (NIK) {{ $kta->istri_suami }}</div>
+                                <div class="text-slate-500">Nomor Induk Kependudukan (NIK) {{ $kta->istri_suami }}
+                                </div>
                                 <div class="mt-1 font-medium text-md">{{ $kta->nik_istri_suami }}</div>
                             </div>
                         </div>
