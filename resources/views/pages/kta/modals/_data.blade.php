@@ -4,15 +4,15 @@
             <div class="flex flex-col pb-5 -mx-5 lg:flex-row">
                 <div class="flex items-center justify-center flex-1 px-5 lg:justify-start">
                     <div class="relative flex-none w-20 h-20 image-fit sm:h-24 sm:w-24 lg:h-32 lg:w-32">
-                        @if (Str::startsWith($data->ttd, 'ttd/'))
-                            <!-- Jika $data->foto adalah path -->
+                        @if (Str::startsWith($kta->ttd, 'ttd/'))
+                            <!-- Jika $kta->foto adalah path -->
                             <img class="rounded-full"
                             src="{{ $kta->foto ? '/get-image?image=' . $kta->foto : 'https://ui-avatars.com/api/?name=' . $kta->full_name }}"
                             alt="Foto - {{ $kta->full_name }}" />
                         @else
-                            <!-- Jika $data->foto adalah base64 -->
+                            <!-- Jika $kta->foto adalah base64 -->
                             <img class="rounded-full"
-                            src="data:image/jpeg;base64,{{ $data->ttd }}"
+                            src="data:image/jpeg;base64,{{ $kta->foto }}"
                             alt="Foto - {{ $kta->full_name }}" />
                         @endif
                     </div>
