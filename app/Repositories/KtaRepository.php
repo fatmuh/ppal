@@ -24,12 +24,23 @@ class KtaRepository
         }
 
         $kta->orderByRaw("CASE WHEN no_kta REGEXP '^[IVXLCDM]+-[0-9]+-[0-9]+-[0-9]+$' THEN 0 ELSE 1 END")
-        ->orderByRaw("CAST(SUBSTRING_INDEX(no_kta, '-', 1) AS CHAR)")
-        ->orderByRaw("CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(no_kta, '-', -3), '-', 1) AS UNSIGNED)")
-        ->orderByRaw("CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(no_kta, '-', -2), '-', 1) AS UNSIGNED)")
-        ->orderByRaw("CAST(SUBSTRING_INDEX(no_kta, '-', -1) AS UNSIGNED)");
+            ->orderByRaw("CAST(SUBSTRING_INDEX(no_kta, '-', 1) AS CHAR)")
+            ->orderByRaw("CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(no_kta, '-', -3), '-', 1) AS UNSIGNED)")
+            ->orderByRaw("CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(no_kta, '-', -2), '-', 1) AS UNSIGNED)")
+            ->orderByRaw("CAST(SUBSTRING_INDEX(no_kta, '-', -1) AS UNSIGNED)");
 
         return $kta->paginate($size);
+    }
+
+    public function countKtaGroups(): array
+    {
+        return DB::table('kta')
+            ->selectRaw("SUBSTRING_INDEX(no_kta, '-', 1) as romawi_nomor, COUNT(*) as count")
+            ->whereRaw("no_kta REGEXP '^[IVXLCDM]+-[0-9]+-[0-9]+-[0-9]+$'") // Pastikan hanya mengambil data sesuai format
+            ->groupBy('romawi_nomor')
+            ->orderBy('romawi_nomor')
+            ->pluck('count', 'romawi_nomor')
+            ->toArray();
     }
 
     public function getKtaById(int $id): Kta
@@ -40,8 +51,8 @@ class KtaRepository
     public function getKtaByNoKtaNik($kta_nik): Kta
     {
         return Kta::where('no_kta', $kta_nik)
-              ->orWhere('nik', $kta_nik)
-              ->firstOrFail();
+            ->orWhere('nik', $kta_nik)
+            ->firstOrFail();
     }
 
     public function getKtaByNoKta(?string $no_kta): ?Kta
@@ -75,8 +86,7 @@ class KtaRepository
         string $alamat1,
         ?string $alamat2,
         string $wil_rayon,
-    ): Kta
-    {
+    ): Kta {
         DB::beginTransaction();
         try {
             $kta = Kta::create([
@@ -96,7 +106,6 @@ class KtaRepository
                 'alamat2'               => $alamat2,
                 'wil_rayon'             => $wil_rayon,
             ]);
-
         } catch (\Throwable $e) {
             DB::rollBack();
             throw $e;
@@ -123,8 +132,7 @@ class KtaRepository
         string $alamat1,
         ?string $alamat2,
         string $wil_rayon,
-    ): Kta
-    {
+    ): Kta {
         DB::beginTransaction();
         try {
             $kta = $this->getKtaById($id);

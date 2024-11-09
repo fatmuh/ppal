@@ -52,6 +52,13 @@ class KtaService
         ];
     }
 
+    public function countKtaGroups(): array
+    {
+        $count = $this->ktaRepository->countKtaGroups();
+
+        return compact('count');
+    }
+
     public function getDataKta($search)
     {
         // Menggunakan parameter search langsung

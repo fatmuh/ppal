@@ -31,7 +31,8 @@ class KtaController extends Controller
 
     public function list(): View
     {
-        return view('pages.kta.index');
+        $data = $this->ktaService->countKtaGroups();
+        return view('pages.kta.index', $data);
     }
 
     public function detail($id): JsonResource
