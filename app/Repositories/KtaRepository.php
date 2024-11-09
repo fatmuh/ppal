@@ -23,6 +23,12 @@ class KtaRepository
             }
         }
 
+        $kta->orderByRaw("CASE WHEN no_kta REGEXP '^[IVXLCDM]+-[0-9]+-[0-9]+-[0-9]+$' THEN 0 ELSE 1 END")
+        ->orderByRaw("CAST(SUBSTRING_INDEX(no_kta, '-', 1) AS CHAR)")
+        ->orderByRaw("CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(no_kta, '-', -3), '-', 1) AS UNSIGNED)")
+        ->orderByRaw("CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(no_kta, '-', -2), '-', 1) AS UNSIGNED)")
+        ->orderByRaw("CAST(SUBSTRING_INDEX(no_kta, '-', -1) AS UNSIGNED)");
+
         return $kta->paginate($size);
     }
 
