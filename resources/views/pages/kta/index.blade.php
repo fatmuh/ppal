@@ -23,7 +23,7 @@
                 <div class="box p-5">
                     <div class="flex items-center gap-3">
                         <x-base.lucide class="h-[28px] w-[28px] text-primary" icon="CreditCard" />
-                        <span class="text-base font-medium">Jumlah KTA (Rayon)</span>
+                        <span class="text-base font-medium">Jumlah KTA (Wilayah)</span>
                     </div>
                     <div class="mt-5 grid grid-cols-3 md:grid-cols-5 lg:grid-cols-8">
                         @foreach ($count as $key => $value)
