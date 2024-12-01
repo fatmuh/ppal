@@ -34,3 +34,39 @@ if (!function_exists('uncamelize')) {
         return strtolower($camel);
     }
 }
+
+if (! function_exists('isRole')) {
+    function isRole($role)
+    {
+        switch ($role) {
+            case 'super_admin':
+                return (auth()->user()->active === 1) ? true : false;
+                break;
+
+            case 'admin':
+                return (auth()->user()->active === 0) ? true : false;
+                break;
+
+            default:
+                return false;
+                break;
+        }
+    }
+}
+
+if (! function_exists('checkRoles')) {
+    function checkRoles($roles)
+    {
+        if (isRole('super_admin')) {
+            return true;
+        }
+
+        foreach($roles as $role) {
+            if (isRole($role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}

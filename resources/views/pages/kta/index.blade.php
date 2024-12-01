@@ -98,7 +98,7 @@
             </div>
         </div>
         <div class="overflow-x-auto scrollbar-hidden">
-            <div class="mt-5" id="kta-tabulator" data-url="{{ route('kta.tabulator') }}"></div>
+            <div class="mt-5" id="kta-tabulator" data-url="{{ route('kta.tabulator') }}" data-role="{{ auth()->user()->active }}"></div>
         </div>
     </div>
     <!-- END: HTML Table Data -->

@@ -17,6 +17,7 @@ class SideMenu
                 //     'layout' => 'side-menu'
                 ],
                 'title' => 'Dashboard',
+                'roles' => ['super_admin', 'admin']
 
             ],
             'kta' => [
@@ -26,6 +27,7 @@ class SideMenu
                 //     'layout' => 'side-menu'
                 ],
                 'title' => 'KTA',
+                'roles' => ['super_admin', 'admin']
 
             ],
             'users' => [
@@ -35,6 +37,7 @@ class SideMenu
                 //     'layout' => 'side-menu'
                 ],
                 'title' => 'Admin',
+                'roles' => ['super_admin']
 
             ],
         ];

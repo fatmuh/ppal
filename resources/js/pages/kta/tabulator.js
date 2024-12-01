@@ -7,6 +7,7 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
 
     if (tableEl.length && tableEl.data('url')) {
         const url = tableEl.data('url');
+        const role = tableEl.data('role');
         const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         const tabulator = new Tabulator("#kta-tabulator", {
@@ -103,6 +104,7 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
                     print: false,
                     download: false,
                     formatter(cell, formatterParams) {
+                        if(role === 1) {
                             return `<div class="flex items-center lg:justify-center">
 
                             <a href="javascript:;" class="flex items-center mr-3 text-blue-700 detail-kta" data-href="${cell.getData().urls.data_url}">
@@ -123,6 +125,19 @@ import {TabulatorFull as Tabulator} from "tabulator-tables";
                             </form>
 
                         </div>`
+                        } else {
+                            return `<div class="flex items-center lg:justify-center">
+
+                            <a href="javascript:;" class="flex items-center mr-3 text-blue-700 detail-kta" data-href="${cell.getData().urls.data_url}">
+                                <i data-lucide="list" class="w-4 h-4 mr-1"></i> Detail
+                            </a>
+
+                            <a href="javascript:;" class="flex items-center mr-3 text-yellow-600 btn-kta-edit" data-url="${cell.getData().urls.detail_url}" data-form-url="${cell.getData().urls.update_url}">
+                                <i data-lucide="pencil" class="w-4 h-4 mr-1"></i> Edit
+                            </a>
+
+                        </div>`
+                        }
                     },
                 },
             ]

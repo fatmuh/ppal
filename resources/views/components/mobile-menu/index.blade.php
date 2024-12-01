@@ -50,68 +50,71 @@
                 @if ($menu == 'divider')
                     <li class="menu__divider my-6"></li>
                 @else
-                    <li>
-                        <a
-                            class="{{ $firstLevelActiveIndex == $menuKey ? 'menu menu--active' : 'menu' }}"
-                            href="{{ isset($menu['route_name']) ? route($menu['route_name'], $menu['params']) : 'javascript:;' }}"
-                        >
-                            <div class="menu__icon">
-                                <x-base.lucide icon="{{ $menu['icon'] }}" />
-                            </div>
-                            <div class="menu__title">
-                                {{ $menu['title'] }}
-                                @if (isset($menu['sub_menu']))
-                                    <div
-                                        class="menu__sub-icon {{ $firstLevelActiveIndex == $menuKey ? 'transform rotate-180' : '' }}">
-                                        <x-base.lucide icon="ChevronDown" />
-                                    </div>
-                                @endif
-                            </div>
-                        </a>
-                        @if (isset($menu['sub_menu']))
-                            <ul class="{{ $firstLevelActiveIndex == $menuKey ? 'menu__sub-open' : '' }}">
-                                @foreach ($menu['sub_menu'] as $subMenuKey => $subMenu)
-                                    <li>
-                                        <a
-                                            class="{{ $secondLevelActiveIndex == $subMenuKey ? 'menu menu--active' : 'menu' }}"
-                                            href="{{ isset($subMenu['route_name']) ? route($subMenu['route_name'], $subMenu['params']) : 'javascript:;' }}"
-                                        >
-                                            <div class="menu__icon">
-                                                <x-base.lucide icon="{{ $subMenu['icon'] }}" />
-                                            </div>
-                                            <div class="menu__title">
-                                                {{ $subMenu['title'] }}
-                                                @if (isset($subMenu['sub_menu']))
-                                                    <div
-                                                        class="menu__sub-icon {{ $secondLevelActiveIndex == $subMenuKey ? 'transform rotate-180' : '' }}">
-                                                        <x-base.lucide icon="ChevronDown" />
+                    @if (checkRoles((isset($menu['roles'])) ? $menu['roles'] : []))
+                        <li>
+                            <a
+                                class="{{ $firstLevelActiveIndex == $menuKey ? 'menu menu--active' : 'menu' }}"
+                                href="{{ isset($menu['route_name']) ? route($menu['route_name'], $menu['params']) : 'javascript:;' }}">
+                                <div class="menu__icon">
+                                    <x-base.lucide icon="{{ $menu['icon'] }}" />
+                                </div>
+                                <div class="menu__title">
+                                    {{ $menu['title'] }}
+                                    @if (isset($menu['sub_menu']))
+                                        <div
+                                            class="menu__sub-icon {{ $firstLevelActiveIndex == $menuKey ? 'transform rotate-180' : '' }}">
+                                            <x-base.lucide icon="ChevronDown" />
+                                        </div>
+                                    @endif
+                                </div>
+                            </a>
+                            @if (isset($menu['sub_menu']))
+                                <ul class="{{ $firstLevelActiveIndex == $menuKey ? 'menu__sub-open' : '' }}">
+                                    @foreach ($menu['sub_menu'] as $subMenuKey => $subMenu)
+                                        @if (checkRoles((isset($menu['roles'])) ? $menu['roles'] : []))
+                                            <li>
+                                                <a
+                                                    class="{{ $secondLevelActiveIndex == $subMenuKey ? 'menu menu--active' : 'menu' }}"
+                                                    href="{{ isset($subMenu['route_name']) ? route($subMenu['route_name'], $subMenu['params']) : 'javascript:;' }}">
+                                                    <div class="menu__icon">
+                                                        <x-base.lucide icon="{{ $subMenu['icon'] }}" />
                                                     </div>
-                                                @endif
-                                            </div>
-                                        </a>
-                                        @if (isset($subMenu['sub_menu']))
-                                            <ul
-                                                class="{{ $secondLevelActiveIndex == $subMenuKey ? 'menu__sub-open' : '' }}">
-                                                @foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu)
-                                                    <li>
-                                                        <a
-                                                            class="{{ $thirdLevelActiveIndex == $lastSubMenuKey ? 'menu menu--active' : 'menu' }}"
-                                                            href="{{ isset($lastSubMenu['route_name']) ? route($lastSubMenu['route_name'], $lastSubMenu['params']) : 'javascript:;' }}"
-                                                        >
-                                                            <div class="menu__icon">
-                                                                <x-base.lucide icon="{{ $lastSubMenu['icon'] }}" />
+                                                    <div class="menu__title">
+                                                        {{ $subMenu['title'] }}
+                                                        @if (isset($subMenu['sub_menu']))
+                                                            <div
+                                                                class="menu__sub-icon {{ $secondLevelActiveIndex == $subMenuKey ? 'transform rotate-180' : '' }}">
+                                                                <x-base.lucide icon="ChevronDown" />
                                                             </div>
-                                                            <div class="menu__title">{{ $lastSubMenu['title'] }}</div>
-                                                        </a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
+                                                        @endif
+                                                    </div>
+                                                </a>
+                                                @if (isset($subMenu['sub_menu']))
+                                                    <ul
+                                                        class="{{ $secondLevelActiveIndex == $subMenuKey ? 'menu__sub-open' : '' }}">
+                                                        @foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu)
+                                                            @if (checkRoles((isset($menu['roles'])) ? $menu['roles'] : []))
+                                                                <li>
+                                                                    <a
+                                                                        class="{{ $thirdLevelActiveIndex == $lastSubMenuKey ? 'menu menu--active' : 'menu' }}"
+                                                                        href="{{ isset($lastSubMenu['route_name']) ? route($lastSubMenu['route_name'], $lastSubMenu['params']) : 'javascript:;' }}" >
+                                                                        <div class="menu__icon">
+                                                                            <x-base.lucide icon="{{ $lastSubMenu['icon'] }}" />
+                                                                        </div>
+                                                                        <div class="menu__title">{{ $lastSubMenu['title'] }}</div>
+                                                                    </a>
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            </li>
                                         @endif
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                    @endif
                 @endif
             @endforeach
             <!-- END: First Child -->
