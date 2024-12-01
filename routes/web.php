@@ -5,7 +5,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ImportExportController;
 use App\Http\Controllers\KtaController;
-use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 
@@ -20,23 +19,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::controller(LandingController::class)->name('landing.')->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/search', 'search')->name('search');
-    Route::post('/search', 'searchData')->name('search.data');
-    Route::get('/detail', 'detail')->name('detail');
-    Route::post('/store', 'store')->name('store');
-    Route::patch('/update/{id}', 'update')->name('update');
-});
-
 Route::controller(KtaController::class)->prefix('kta')->name('kta.')->group(function () {
     Route::get('/detail/card/front/{id}', 'front')->name('front');
     Route::get('/detail/card/back/{id}', 'back')->name('back');
-});
-
-Route::controller(AuthController::class)->middleware('guest')->name('auth.')->group(function () {
-    Route::get('login', 'login')->name('login');
-    Route::post('authentication', 'authentication')->name('authentication');
 });
 
 Route::middleware('auth')->group(function () {
