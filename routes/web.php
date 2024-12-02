@@ -52,11 +52,6 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::controller(ImportExportController::class)->group(function () {
-    Route::get('/admin/kta/export', 'export')->name('kta.export');
-    Route::get('/admin/kta/export/csv', 'exportImport')->name('kta.export.csv');
-});
-
 Route::controller(ImageController::class)->group(function () {
     Route::get('/get-image', 'getImage')->name('kta.get.image');
 });
