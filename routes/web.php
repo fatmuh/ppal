@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\ImportExportController;
 use App\Http\Controllers\KtaController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
@@ -45,8 +43,4 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin', 'dashboard')->name('dashboard');
     });
 
-});
-
-Route::controller(ImageController::class)->group(function () {
-    Route::get('/get-image', 'getImage')->name('kta.get.image');
 });

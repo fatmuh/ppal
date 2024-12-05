@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KtaController;
 use App\Http\Controllers\ImportExportController;
@@ -23,4 +24,8 @@ Route::controller(ImportExportController::class)->group(function () {
 Route::controller(KtaController::class)->prefix('kta')->name('kta.')->group(function () {
     Route::get('/detail/card/front/{id}', 'front')->name('front');
     Route::get('/detail/card/back/{id}', 'back')->name('back');
+});
+
+Route::controller(ImageController::class)->group(function () {
+    Route::get('/get-image', 'getImage')->name('kta.get.image');
 });
