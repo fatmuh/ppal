@@ -19,11 +19,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::controller(KtaController::class)->prefix('kta')->name('kta.')->group(function () {
-    Route::get('/detail/card/front/{id}', 'front')->name('front');
-    Route::get('/detail/card/back/{id}', 'back')->name('back');
-});
-
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
